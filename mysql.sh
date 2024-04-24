@@ -12,15 +12,11 @@ echo "password reader:$mysql_root_password"
 
 dnf install mysql-server -y &>>$LOGFILE
 
-##VALIDATE $? "instaling mysql"
-
 systemctl enable mysqld &>>$LOGFILE
 
-##VALIDATE $? "enabling server"
 
 systemctl start mysqld &>>$LOGFILE
 
-##VALIDATE $? "start  mysql"
 
 ##Below code will be useful for idempotent nature
 
