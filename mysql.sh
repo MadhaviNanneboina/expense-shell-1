@@ -1,8 +1,9 @@
 #!/bin/bash
 
 #implementing mysql DB using shell script
+echo "this script is about to run"
 source ./common.sh
-
+echo "script complited"
 check_root
 
 echo "Please enter DB password:"
