@@ -2,42 +2,12 @@
 
 #implementing backend using shell script
 
-USERID=$(id -u)
-TIMESTAMP=$(date +%F-%H-%M-%S)
-SCRIPTNAME=$(echo $0 | cut -d "." -f1)
-LOGFILE=/tmp/$TIMESTAMP-$SCRIPTNAME.log
+source ./common.sh
 
-#colors
-N="\e[0m"
-R="\e[31m"
-G="\e[32m"
-Y="\e[33m"
+check_root
 
 echo "enter DB password:"
 read -s db_root_password
-
-
-VALIDATE(){
-
-if [ $1 -ne 0 ]
-then
-    echo -e "$2 ...$R FAILURE $N"
-    exit 1
-else
-    echo -e "$2 ...$G SUCCESS $N"
-fi
-}
-
-
-if [ $USERID -ne 0 ]
-then
-    echo "please login with super user"
-    exit 1
-else
-    echo "your super user"
-fi
-
-
 
 dnf module disable nodejs -y &>>LOGFILE
 VALIDATE $? "disabling nodejs"
@@ -72,7 +42,7 @@ VALIDATE $? "unzipping the backend code"
 npm install &>>LOGFILE
 VALIDATE $? "installing dependencies"
 
-cp /home/ec2-user/expenses-shell/backend.service /etc/systemd/system/backend.service &>>LOGFILE
+cp /home/ec2-user/expenses-shell-1/backend.service /etc/systemd/system/backend.service &>>LOGFILE
 VALIDATE $? "copied backend service"
 
 systemctl daemon-reload &>>LOGFILE
