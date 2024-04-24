@@ -4,7 +4,6 @@
 source ./common.sh
 
 check_root
-
 echo "enter DB password:"
 read -s db_root_password
 
