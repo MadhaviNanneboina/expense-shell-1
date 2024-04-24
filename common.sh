@@ -4,35 +4,30 @@
 
 USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
-SCRIPTNAME=$(echo $0 | cut -d "." -f1)
-LOGFILE=/tmp/$TIMESTAMP-$SCRIPTNAME.log
-
-#colors
-B="\e[30m"
+SCRIPT_NAME=$(echo $0 | cut -d "." -f1)
+LOGFILE=/tmp/$SCRIPT_NAME-$TIMESTAMP.log
 R="\e[31m"
 G="\e[32m"
 Y="\e[33m"
 N="\e[0m"
 
-VALIDATE(){
 
-if [ $1 -ne 0 ]
-then
-    echo -e "$2 ...$R FAILURE $N"
-    exit 1
-else
-    echo -e "$2 ...$G SUCCESS $N"
-fi
+VALIDATE(){
+   if [ $1 -ne 0 ]
+   then
+        echo -e "$2...$R FAILURE $N"
+        exit 1
+    else
+        echo -e "$2...$G SUCCESS $N"
+    fi
 }
 
-#putting user validations in function so that we can call that function
-ROOT(){
-
-if [ $USERID -ne 0 ]
-then
-    echo "please login with super user"
-    exit 1
-else
-    echo "your super user"
-fi
+check_root(){
+    if [ $USERID -ne 0 ]
+    then
+        echo "Please run this script with root access."
+        exit 1 # manually exit if error comes.
+    else
+        echo "You are super user."
+    fi
 }
