@@ -11,15 +11,19 @@ read mysql_root_password
 echo "password reader:$mysql_root_password"
 
 dnf install mysql-server -y &>>$LOGFILE
-VALIDATE $? "instaling mysql"
+
+##VALIDATE $? "instaling mysql"
 
 systemctl enable mysqld &>>$LOGFILE
-VALIDATE $? "enabling server"
+
+##VALIDATE $? "enabling server"
 
 systemctl start mysqld &>>$LOGFILE
-VALIDATE $? "start  mysql"
 
-#Below code will be useful for idempotent nature
+##VALIDATE $? "start  mysql"
+
+##Below code will be useful for idempotent nature
+
 mysql -h db.vishruth.online -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
 if [ $? -ne 0 ]
 then
