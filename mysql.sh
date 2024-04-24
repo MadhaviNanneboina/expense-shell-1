@@ -2,6 +2,7 @@
 
 #implementing mysql DB using shell script
 source ./common.sh
+VALIDATE $? "executing other file"
 
 ROOT
 
