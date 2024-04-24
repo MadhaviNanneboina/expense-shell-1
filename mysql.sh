@@ -3,7 +3,7 @@
 #implementing mysql DB using shell script
 source ./common.sh
 
-check_root()
+check_root
 
 echo "enter DB password:"
 read -s db_root_password
