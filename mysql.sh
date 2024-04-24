@@ -7,7 +7,7 @@ echo "script complited"
 check_root
 
 echo "Please enter DB password:"
-read -s mysql_root_password
+read mysql_root_password
 
 dnf install mysql-server -y &>>$LOGFILE
 
