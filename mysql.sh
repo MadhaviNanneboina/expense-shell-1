@@ -9,11 +9,15 @@ check_root
 echo "Please enter DB password:"
 read mysql_root_password
 echo "password reader:$mysql_root_password"
+
 dnf install mysql-server -y &>>$LOGFILE
-echo "installing"
+VALIDATE $? "instaling mysql"
+
 systemctl enable mysqld &>>$LOGFILE
+VALIDATE $? "enabling server"
 
 systemctl start mysqld &>>$LOGFILE
+VALIDATE $? "start  mysql"
 
 #Below code will be useful for idempotent nature
 mysql -h db.daws78s.online -uroot -p${mysql_root_password} -e 'show databases;' &>>$LOGFILE
