@@ -1,4 +1,5 @@
 #!/bin/bash
+
 #putting common things in this file 
 USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
@@ -25,7 +26,7 @@ fi
 
 #putting user validations in function so that we can call that function
 check_root(){
-    
+
 if [ $USERID -ne 0 ]
 then
     echo "please login with super user"
