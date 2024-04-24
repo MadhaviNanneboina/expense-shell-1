@@ -1,6 +1,7 @@
 #!/bin/bash
 
 #putting common things in this file 
+
 USERID=$(id -u)
 TIMESTAMP=$(date +%F-%H-%M-%S)
 SCRIPTNAME=$(echo $0 | cut -d "." -f1)
