@@ -26,7 +26,7 @@ fi
 }
 
 #putting user validations in function so that we can call that function
-check_root(){
+ROOT(){
 
 if [ $USERID -ne 0 ]
 then
